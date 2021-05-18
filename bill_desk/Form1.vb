@@ -4,7 +4,7 @@ Imports Twilio.Rest.Api.V2010.Account
 Imports Twilio.Types
 
 Public Class bill_desk
-    Dim Connection As New SqlConnection("Server=VIGNESH-LAPTOP\SQLEXPRESS; Database=bill_desk; Integrated Security = True")
+    Dim Connection As New SqlConnection("")
 
     Dim str As String
     Dim no As Integer
@@ -63,12 +63,12 @@ Public Class bill_desk
 
                 If fetchS("card_no") = frm_card_no And fetchS("name") = frm_name And fetchS("cvv") = cvv And fetchS("exp_date") = exp_date And fetchS("amount") > amount And fetched_toAcc = to_acc_no Then
                     otpPage.genOTP()
-                    Const accountSid = "ACa0e4d951c35048ed8c601ee077bd76b4"
-                    Const authToken = "0453dc12554437b8a0ddf51e2f44c26c"
+                    Const accountSid = "enter your twillio account sid"
+                    Const authToken = "enter your twillio account authtoken"
                     TwilioClient.Init(accountSid, authToken)
                     Dim toNumber = New PhoneNumber(frm_phn)
                     Dim message = MessageResource.Create(
-                    toNumber, from:=New PhoneNumber("+16089753896"),
+                        toNumber, from:=New PhoneNumber("enter your twillio phone no"),
                     body:="Your Bill Desk OTP : " + otpPage.otp)
                     Me.Hide()
                     otpPage.Show()
@@ -182,23 +182,23 @@ Public Class bill_desk
         End If
     End Sub
     Public Sub msgRec(ByVal balSenAcc As String, ByVal balSender As String, ByVal balSenPh As String, ByVal balRecAcc As String)
-        Const accountSid = "ACa0e4d951c35048ed8c601ee077bd76b4"
-        Const authToken = "0453dc12554437b8a0ddf51e2f44c26c"
+        Const accountSid = "enter your twillio account sid"
+        Const authToken = "enter your twillio authtoken"
         TwilioClient.Init(accountSid, authToken)
         Dim toNumber = New PhoneNumber(balSenPh)
         Dim message = MessageResource.Create(
-                        toNumber, from:=New PhoneNumber("+16089753896"),
+            toNumber, from:=New PhoneNumber("enter your twillio phn no"),
                         body:="Receiver - Your Account Number : " + balSenAcc.Substring(0, 3) + "XXXXX" + balSenAcc.Substring(7, 2) + " is credited with Rs: " + amt.Text + " by " + balRecAcc.Substring(0, 3) + "XXX" + balRecAcc.Substring(7, 2) + " On " + System.DateTime.Now.ToString("MMM/dd/yyyy HH:mm:ss") + vbNewLine + "Your Account Balance is Rs:" + balSender + "Your Transaction id : " + tran_id)
     End Sub
 
     Public Sub msgSend(ByVal balRecAcc As String, ByVal balReciever As String, ByVal balRecPh As String, ByVal balSenAcc As String)
 
-        Const accountSid = "ACa0e4d951c35048ed8c601ee077bd76b4"
-        Const authToken = "0453dc12554437b8a0ddf51e2f44c26c"
+        Const accountSid = "enter your twillio account sid"
+        Const authToken = "enter your .."
         TwilioClient.Init(accountSid, authToken)
         Dim toNumber = New PhoneNumber(balRecPh)
         Dim message = MessageResource.Create(
-                        toNumber, from:=New PhoneNumber("+16089753896"),
+                        toNumber, from:=New PhoneNumber("enter your .."),
                         body:="Sender - Your Account Number : " + balRecAcc.Substring(0, 3) + "XXXXX" + balRecAcc.Substring(7, 2) + " is debited by Rs " + amt.Text + " for " + balSenAcc.Substring(0, 3) + "XXX" + balSenAcc.Substring(7, 2) + " On " + System.DateTime.Now.ToString("MMM/dd/yyyy HH:mm:ss") + vbNewLine + "Your Account Balance is Rs: " + balReciever + "Your Transaction id : " + tran_id + vbNewLine + vbNewLine + " If you did not perfom this transaction contact your branch office" + "")
     End Sub
 

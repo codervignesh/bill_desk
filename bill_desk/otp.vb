@@ -2,7 +2,7 @@
 
 Public Class otpPage
 
-    Dim Connection As New SqlConnection("Server=VIGNESH-LAPTOP\SQLEXPRESS; Database=bill_desk; Integrated Security = True")
+    Dim Connection As New SqlConnection("")
 
     Dim gens As String = "0123456789"
     Dim rand As New Random

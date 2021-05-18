@@ -3,8 +3,8 @@
 
 # bill_desk
 A bill desk simulation using VB.net uses Twilio to send OTP for verification
-*To create a simulation of a payment gateway which can be used to transfer money from one account to another using card number and account number. 
-*This problem needs two database tables one to store the account details and another to store transaction details
+* To create a simulation of a payment gateway which can be used to transfer money from one account to another using card number and account number. 
+* This problem needs two database tables one to store the account details and another to store transaction details
 
 # ABSTRACT
 This problem is mainly developed to visualize the process of online payment gateways like 
